@@ -43,21 +43,18 @@ const Home = () => {
     await openlogin.login({
       loginProvider: "google",
     });
-    var id = Ed25519KeyIdentity.generate(
-      new Uint8Array(fromHexString(openlogin.privKey))
-    );
-    var iden_ = Secp256k1KeyIdentity.fromSecretKey(
-      fromHexString(openlogin.privKey)
-    );
+    var id_ = openlogin.privKey;
+    //var id = Ed25519KeyIdentity.generate(new Uint8Array(fromHexString(id_)));
+    var iden_ = Secp256k1KeyIdentity.fromSecretKey(fromHexString(id_));
     //const agent = new HttpAgent({host: getHost(), identity});
 
     var options: any = {};
     options["identity"] = iden_;
     var loka_ = createActor("ilah7-qqaaa-aaaam-abzyq-cai", options);
-    //console.log("check if user verified ");
-    var res: any = processId(id, "google");
-    const verified_ = await loka_.isVerified(id.getPrincipal());
-    console.log("verified_ " + JSON.stringify(verified_));
+
+    var res: any = processId(iden_, "google");
+    const verified_ = await loka_.whoCall();
+    console.log("whocall_ " + JSON.stringify(verified_));
     console.log("iden_ " + JSON.stringify(iden_));
     console.log("result " + JSON.stringify(res));
     return res;

@@ -61,6 +61,7 @@ export const idlFactory = ({ IDL }) => {
       ["query"]
     ),
     verifyMiner: IDL.Func([IDL.Text, IDL.Nat], [IDL.Bool], []),
+    whoCall: IDL.Func([], [IDL.Text], ["query"]),
     withdrawCKBTC: IDL.Func([IDL.Text, IDL.Nat, IDL.Text], [IDL.Bool], []),
     withdrawUSDT: IDL.Func(
       [IDL.Text, IDL.Nat, IDL.Text, IDL.Text],
